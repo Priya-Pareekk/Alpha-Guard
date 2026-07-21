@@ -18,10 +18,10 @@ const SKILL_CATEGORIES = [
                 <polyline points="8 6 2 12 8 18" />
             </svg>
         ),
-        skills: ["Java", "Python", "SQL", "HTML/CSS", "JavaScript"],
+        skills: ["Java", "Python", "C", "SQL", "HTML/CSS", "JavaScript"],
     },
     {
-        title: "Frameworks",
+        title: "Frameworks & Tools",
         icon: (
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -29,10 +29,10 @@ const SKILL_CATEGORIES = [
                 <line x1="9" y1="21" x2="9" y2="9" />
             </svg>
         ),
-        skills: ["Streamlit", "Bootstrap", "Servlets", "JSP", "Git / GitHub"],
+        skills: ["React.js", "Node.js", "Git", "GitHub", "Postman", "VS Code"],
     },
     {
-        title: "Data & AI",
+        title: "Core CS / Backend",
         icon: (
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -40,16 +40,16 @@ const SKILL_CATEGORIES = [
                 <path d="M2 12l10 5 10-5" />
             </svg>
         ),
-        skills: ["NLP (TextBlob)", "Plotly", "Google Analytics", "MS Excel (Advanced)", "Postman"],
+        skills: ["Data Structures & Algorithms", "DBMS", "Operating Systems", "System Design", "OOP", "Network Security"],
     },
     {
-        title: "Strategy",
+        title: "Cloud & DevOps",
         icon: (
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
             </svg>
         ),
-        skills: ["SEO", "Content Marketing", "PR Strategy", "Market Analytics", "Financial Modeling"],
+        skills: ["Docker", "AWS Cloud Architecting", "Microsoft Azure", "CI/CD Pipelines"],
     },
 ];
 
@@ -60,24 +60,19 @@ const CREDENTIALS = [
         desc: "Building production-grade AI systems including forensic financial analysis platforms.",
     },
     {
-        icon: "📖",
-        title: "Published Author",
-        desc: '"Collection of a Novice Wordsmith" — Anthology of Hindi & English poems.',
+        icon: "⚡",
+        title: "Backend & Systems Developer",
+        desc: "Specializing in scalable backend APIs, database architecture, and microservices design.",
     },
     {
         icon: "🏆",
-        title: "Top 14 in NEC (IIT Bombay)",
-        desc: "Selected from 500+ teams for data-driven problem solving at the national level.",
+        title: "Hackathon Winner & Finalist",
+        desc: "Recognized in national-level hackathons for building high-performance full-stack applications.",
     },
     {
-        icon: "🥈",
-        title: "2nd in India — National Quiz",
-        desc: "National Quiz conducted by Wednesday Time Magazine. Competed against thousands.",
-    },
-    {
-        icon: "✍️",
-        title: "Published Contributor",
-        desc: "Short stories in Everscribe Magazine and 50-Word Story.",
+        icon: "💻",
+        title: "Competitive Programmer",
+        desc: "Active problem solver with strong foundation in Data Structures, Algorithms, and Core CS.",
     },
 ];
 
@@ -104,11 +99,11 @@ export default function AboutPage() {
                     <h2 className="text-3xl sm:text-4xl font-bold text-ag-text tracking-tight mb-2">
                         Built by{" "}
                         <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                            Tanishq Kalra
+                            Priya Pareek
                         </span>
                     </h2>
                     <p className="text-sm text-ag-text2 max-w-lg mx-auto">
-                        The mind behind Alpha-Guard — student, developer, author, strategist.
+                        The mind behind Alpha-Guard — student, backend developer, problem solver.
                     </p>
                 </AnimatedSection>
 
@@ -131,7 +126,7 @@ export default function AboutPage() {
                                 <div className="relative w-44 h-44 rounded-full overflow-hidden ring-2 ring-emerald-500/30 ring-offset-4 ring-offset-ag-bg">
                                     <Image
                                         src="/architect.jpg"
-                                        alt="Tanishq Kalra"
+                                        alt="Priya Pareek"
                                         fill
                                         className="object-cover"
                                         priority
@@ -150,18 +145,18 @@ export default function AboutPage() {
                             {/* Info */}
                             <div className="flex-1 text-center md:text-left">
                                 <h3 className="text-2xl sm:text-3xl font-bold text-ag-text tracking-tight mb-1">
-                                    Tanishq Kalra
+                                    Priya Pareek
                                 </h3>
                                 <p className="text-sm font-mono text-emerald-400 mb-1">
                                     Student · VIT-AP University
                                 </p>
                                 <p className="text-xs font-mono text-ag-muted mb-6">
-                                    Developer · Published Author · National Achiever
+                                    Software Developer · SDE Aspirant · Backend Enthusiast
                                 </p>
 
                                 {/* Portfolio CTA — Neon Pulse */}
                                 <a
-                                    href="https://tanishq-kalra.github.io/portfoliotanishq/"
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group relative inline-flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm tracking-wide overflow-hidden transition-all duration-300 hover:scale-[1.02]"
@@ -287,12 +282,12 @@ export default function AboutPage() {
                 <AnimatedSection delay={0.4} className="mb-8">
                     <div className="card-glass p-6 text-center">
                         <p className="text-xs text-ag-muted font-mono">
-                            Alpha-Guard was conceptualized and architected by Tanishq Kalra as a demonstration
-                            of full-stack engineering, financial modeling, and AI integration capabilities.
+                            Alpha-Guard was conceptualized and architected by Priya Pareek as a demonstration
+                            of full-stack engineering and backend systems design capabilities.
                         </p>
                         <div className="flex items-center justify-center gap-4 mt-4">
                             <a
-                                href="https://tanishq-kalra.github.io/portfoliotanishq/"
+                                href="#"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-emerald-400 text-xs font-mono hover:text-emerald-300 transition-colors"
@@ -312,7 +307,7 @@ export default function AboutPage() {
             <footer className="border-t border-ag-border py-4 px-6">
                 <div className="max-w-[1480px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
                     <p className="text-[10px] font-mono text-ag-muted">
-                        ALPHA-GUARD v0.2.0 · Designed by Tanishq Kalra
+                        ALPHA-GUARD v0.2.0 · Designed by Priya Pareek
                     </p>
                     <p className="text-[10px] font-mono text-ag-muted">
                         Powered by FastAPI · Next.js · SEC EDGAR · Google Gemini

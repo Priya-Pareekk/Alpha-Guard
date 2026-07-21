@@ -1,0 +1,9 @@
+[
+  "test_risk_engine.py::TestAltmanZScore::test_component_ratios_are_correct",
+  "test_risk_engine.py::TestAltmanZScore::test_distress_zone_company",
+  "test_risk_engine.py::TestAltmanZScore::test_gray_zone_company",
+  "test_risk_engine.py::TestAltmanZScore::test_manual_score_calculation",
+  "test_risk_engine.py::TestAltmanZScore::test_negative_retained_earnings",
+  "test_risk_engine.py::TestAltmanZScore::test_safe_zone_company",
+  "test_risk_engine.py::TestAltmanZScore::test_zero_total_assets_raises_error"
+]
