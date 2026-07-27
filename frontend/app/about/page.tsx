@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import DashboardHeader from "@/components/DashboardHeader";
 import { AnimatedSection, AnimatedList } from "@/components/AnimatedSection";
 
@@ -65,11 +64,6 @@ const CREDENTIALS = [
         desc: "Specializing in scalable backend APIs, database architecture, and microservices design.",
     },
     {
-        icon: "🏆",
-        title: "Hackathon Winner & Finalist",
-        desc: "Recognized in national-level hackathons for building high-performance full-stack applications.",
-    },
-    {
         icon: "💻",
         title: "Competitive Programmer",
         desc: "Active problem solver with strong foundation in Data Structures, Algorithms, and Core CS.",
@@ -121,27 +115,6 @@ export default function AboutPage() {
                         <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/3 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 p-8 sm:p-12">
-                            {/* Avatar */}
-                            <div className="relative flex-shrink-0">
-                                <div className="relative w-44 h-44 rounded-full overflow-hidden ring-2 ring-emerald-500/30 ring-offset-4 ring-offset-ag-bg">
-                                    <Image
-                                        src="/architect.jpg"
-                                        alt="Priya Pareek"
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                    />
-                                </div>
-                                {/* Decorative rings */}
-                                <div className="absolute -inset-3 rounded-full border border-emerald-500/10 animate-pulse-soft" />
-                                <div className="absolute -inset-6 rounded-full border border-emerald-500/5" />
-                                {/* Status badge */}
-                                <div className="absolute bottom-1 right-1 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ag-bg2/90 border border-emerald-500/20 backdrop-blur-sm">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                    <span className="text-[9px] font-mono text-emerald-400 uppercase">Online</span>
-                                </div>
-                            </div>
-
                             {/* Info */}
                             <div className="flex-1 text-center md:text-left">
                                 <h3 className="text-2xl sm:text-3xl font-bold text-ag-text tracking-tight mb-1">
@@ -219,7 +192,7 @@ export default function AboutPage() {
                                 className="card-glass p-5 group hover:border-emerald-500/25 transition-all duration-300"
                             >
                                 <div className="flex items-start gap-3">
-                                    <span className="text-2xl flex-shrink-0 mt-0.5">{cred.icon}</span>
+                                    {cred.icon && <span className="text-2xl flex-shrink-0 mt-0.5">{cred.icon}</span>}
                                     <div>
                                         <h4 className="text-sm font-semibold text-ag-text group-hover:text-emerald-400 transition-colors mb-1">
                                             {cred.title}

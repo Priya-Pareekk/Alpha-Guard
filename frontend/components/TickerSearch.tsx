@@ -30,23 +30,52 @@ export default function TickerSearch({ onSearch, isLoading: externalLoading }: T
 
     const allTickers = tickers as TickerEntry[];
 
+    // Normalize a string for fuzzy matching: lowercase, strip all non-alphanumeric
+    const normalize = useCallback((s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, ""), []);
+
     // Filter tickers based on query and global mode
     const suggestions = useMemo((): TickerEntry[] => {
         if (!query.trim()) return [];
         const q = query.toLowerCase();
+        const qNorm = normalize(query);
         return allTickers
             .filter((t) => {
                 // Filter by exchange when not in global mode
                 if (!globalMode && t.exchange && !["NYSE", "NASDAQ", "S&P500"].includes(t.exchange)) {
                     return false;
                 }
-                return (
-                    t.symbol.toLowerCase().includes(q) ||
-                    t.name.toLowerCase().includes(q)
-                );
+                // Match by symbol (exact substring)
+                if (t.symbol.toLowerCase().includes(q)) return true;
+                // Match by name (exact substring)
+                if (t.name.toLowerCase().includes(q)) return true;
+                // Fuzzy match: normalized query against normalized name
+                // e.g. "JP MORGAN" → "jpmorgan" matches "JPMorgan Chase & Co." → "jpmorganchase..."
+                if (qNorm.length >= 2 && normalize(t.name).includes(qNorm)) return true;
+                return false;
             })
             .slice(0, 8);
-    }, [query, globalMode, allTickers]);
+    }, [query, globalMode, allTickers, normalize]);
+
+    // Try to resolve a raw text input to a known ticker symbol
+    const resolveToTicker = useCallback((rawInput: string): string => {
+        const upper = rawInput.trim().toUpperCase();
+        // 1. Exact ticker match
+        const exactTicker = allTickers.find(t => t.symbol.toUpperCase() === upper);
+        if (exactTicker) return exactTicker.symbol;
+
+        // 2. Fuzzy match against company names
+        const inputNorm = normalize(rawInput);
+        if (inputNorm.length >= 2) {
+            const nameMatch = allTickers.find(t => normalize(t.name).includes(inputNorm));
+            if (nameMatch) return nameMatch.symbol;
+        }
+
+        // 3. If suggestions are visible, pick the top one
+        if (suggestions.length > 0) return suggestions[0].symbol;
+
+        // 4. Fallback: return as-is (let the backend handle it)
+        return upper;
+    }, [allTickers, suggestions, normalize]);
 
     useEffect(() => {
         setShowDropdown(isFocused && suggestions.length > 0 && !isLoading);
@@ -101,17 +130,20 @@ export default function TickerSearch({ onSearch, isLoading: externalLoading }: T
     const handleSubmit = useCallback(
         async (e: React.FormEvent) => {
             e.preventDefault();
-            const ticker = query.trim().toUpperCase();
-            if (!ticker) return;
+            const raw = query.trim();
+            if (!raw) return;
 
             if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
                 handleSelect(suggestions[selectedIndex]);
                 return;
             }
 
-            submitTicker(ticker);
+            // Resolve company names / fuzzy input to actual ticker symbols
+            const resolved = resolveToTicker(raw);
+            setQuery(resolved);
+            submitTicker(resolved);
         },
-        [query, selectedIndex, suggestions, handleSelect, submitTicker]
+        [query, selectedIndex, suggestions, handleSelect, submitTicker, resolveToTicker]
     );
 
     const handleKeyDown = useCallback(
