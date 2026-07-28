@@ -9,6 +9,7 @@ import {
     calculateZScore,
     fetchCompanyInfo,
     runForensicAudit,
+    getApiBase,
     type ZScoreResult,
     type ForensicAuditResponse,
 } from "@/lib/api";
@@ -120,7 +121,7 @@ export default function ReportsPage() {
                                 <button
                                     onClick={async () => {
                                         try {
-                                            const apiBase = (process.env.NEXT_PUBLIC_API_URL || "https://alpha-guard.onrender.com").replace(/\/$/, "");
+                                            const apiBase = getApiBase();
                                             const res = await fetch(`${apiBase}/api/reports/generate-pdf`, {
                                                 method: "POST",
                                                 headers: { "Content-Type": "application/json" },

@@ -5,7 +5,15 @@
  * Backend runs on http://localhost:8000
  */
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "https://alpha-guard.onrender.com").replace(/\/$/, "");
+export const getApiBase = (): string => {
+    const envUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+        if (!envUrl || envUrl.includes("localhost") || envUrl.includes("127.0.0.1")) {
+            return "https://alpha-guard.onrender.com";
+        }
+    }
+    return (envUrl || "https://alpha-guard.onrender.com").replace(/\/$/, "");
+};
 
 // ── Types matching backend Pydantic models ──
 
@@ -102,8 +110,9 @@ export class ApiError extends Error {
 }
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
+    const apiBase = getApiBase();
     try {
-        const res = await fetch(`${API_BASE}${path}`, {
+        const res = await fetch(`${apiBase}${path}`, {
             headers: { "Content-Type": "application/json" },
             ...options,
         });
@@ -119,7 +128,7 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
         return res.json();
     } catch (err) {
         if (err instanceof ApiError) throw err;
-        throw new ApiError(0, `Network error: Unable to reach backend at ${API_BASE}. Check CORS or if the server is down.`);
+        throw new ApiError(0, `Network error: Unable to reach backend at ${apiBase}. Check CORS or if the server is down.`);
     }
 }
 
