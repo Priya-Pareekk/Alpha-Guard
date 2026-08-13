@@ -129,7 +129,7 @@ export default function AboutPage() {
 
                                 {/* Portfolio CTA — Neon Pulse */}
                                 <a
-                                    href="#"
+                                    href="https://my-portfolio-pi-seven-32.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group relative inline-flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm tracking-wide overflow-hidden transition-all duration-300 hover:scale-[1.02]"
@@ -260,7 +260,7 @@ export default function AboutPage() {
                         </p>
                         <div className="flex items-center justify-center gap-4 mt-4">
                             <a
-                                href="#"
+                                href="https://my-portfolio-pi-seven-32.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-emerald-400 text-xs font-mono hover:text-emerald-300 transition-colors"
