@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Alpha-Guard — Professional Terminal Design System
+   Deep slate/charcoal · Crisp white/silver · Financial green/red
+   ───────────────────────────────────────────── */
+
+:root {
+  /* Core Backgrounds — deep slate/charcoal */
+  --bg-primary: #0f172a;
+  --bg-secondary: #131c2e;
+  --bg-card: #1e293b;
+  --bg-card-hover: #253347;
+  --bg-surface: #334155;
+
+  /* Financial Accent Colors */
+  --accent-green: #22c55e;
+  --accent-green-dim: #22c55e33;
+  --accent-amber: #f59e0b;
+  --accent-amber-dim: #f59e0b33;
+  --accent-red: #ef4444;
+  --accent-red-dim: #ef444433;
+  --accent-cyan: #38bdf8;
+
+  /* Typography — crisp white/silver */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --text-accent: var(--accent-green);
+
+  /* Borders — high-contrast */
+  --border-dim: #334155;
+  --border-hover: #475569;
+  --border-accent: #22c55e40;
+
+  /* Misc */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Custom Tailwind colors */
+  --color-ag-bg: var(--bg-primary);
+  --color-ag-bg2: var(--bg-secondary);
+  --color-ag-card: var(--bg-card);
+  --color-ag-card-hover: var(--bg-card-hover);
+  --color-ag-surface: var(--bg-surface);
+  --color-ag-green: var(--accent-green);
+  --color-ag-green-dim: var(--accent-green-dim);
+  --color-ag-amber: var(--accent-amber);
+  --color-ag-amber-dim: var(--accent-amber-dim);
+  --color-ag-red: var(--accent-red);
+  --color-ag-red-dim: var(--accent-red-dim);
+  --color-ag-cyan: var(--accent-cyan);
+  --color-ag-text: var(--text-primary);
+  --color-ag-text2: var(--text-secondary);
+  --color-ag-muted: var(--text-muted);
+  --color-ag-border: var(--border-dim);
+  --color-ag-border-hover: var(--border-hover);
+}
+
+/* ─── Global Resets ─── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* ─── Card — Professional solid with crisp borders ─── */
+.card-glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease;
+}
+
+.card-glass:hover {
+  border-color: var(--border-hover);
+}
+
+/* ─── Card Border Variants ─── */
+.card-glass-safe {
+  background: var(--bg-card);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease;
+}
+
+.card-glass-safe:hover {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.card-glass-risk {
+  background: var(--bg-card);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease;
+}
+
+.card-glass-risk:hover {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.card-glass-warning {
+  background: var(--bg-card);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease;
+}
+
+.card-glass-warning:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* ─── Animations ─── */
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes score-fill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: var(--fill-width, 50%);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out both;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-score-fill {
+  animation: score-fill 1.2s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+/* ─── Stagger children animation ─── */
+.stagger-children>* {
+  animation: slide-up 0.4s ease-out both;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0.03s;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 0.09s;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 0.15s;
+}
+
+.stagger-children>*:nth-child(6) {
+  animation-delay: 0.18s;
+}
+
+/* ─── Utility ─── */
+.text-gradient-green {
+  color: var(--accent-green);
+}
+
+/* ─── Print Styles for Reports ─── */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .card-glass {
+    background: white !important;
+    border-color: #e5e7eb !important;
+  }
+
+  header,
+  footer,
+  .fixed {
+    display: none !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
